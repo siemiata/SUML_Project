@@ -1,1 +1,1 @@
-# SUML_Project
+# Przewidywanie zdolności kredytowej
