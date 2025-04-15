@@ -2,6 +2,10 @@
 
 Projekt ten ma na celu stworzenie modelu uczenia maszynowego do klasyfikacji zdolności kredytowej ("credit score") na podstawie danych finansowych. Wykorzystując odpowiednie techniki analizy danych oraz algorytmy ML, model będzie przewidywał ocenę kredytową klientów na podstawie dostępnych informacji.
 
+Wynik pokazuje się w formie:
+- Warto udzielić kredyt
+- Nie warto udzielić kredytu
+
 ## Funkcjonalności
 
 Aplikacja posiada następujące funkcje:
@@ -22,3 +26,10 @@ Aplikacja posiada następujące funkcje:
 Aby uruchomić aplikację należy:
 - Zainstalować zależności: pip install -r requirements.txt
 - Uruchomić aplikację poprzez CreditScoreApp.bat
+
+## Trenowanie modelu
+- Pobierz plik .csv z danymi
+- Wrzuć do folderu projektu
+- Zmodyfikuj odpowiednio ścieżkę do pliku w kodzie  
+- Uruchom train_dec_tree.py
+  Dzięki temu wytrenujesz model przewidujący zdolność kredytową
