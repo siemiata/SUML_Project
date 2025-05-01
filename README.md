@@ -33,3 +33,9 @@ Aby uruchomić aplikację należy:
 - Zmodyfikuj odpowiednio ścieżkę do pliku w kodzie  
 - Uruchom train_dec_tree.py
   Dzięki temu wytrenujesz model przewidujący zdolność kredytową
+
+## Uruchomienie przy pomocy Dockera
+- Pobierz projekt
+- Uruchom komendę docker build -t my-ai-app .
+- Uruchom komendę docker run -p 8501:8501 my-ai-app
+- Aplikacja działa na localhost:8501
