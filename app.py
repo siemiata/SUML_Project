@@ -174,3 +174,5 @@ elif menu == "Wszyscy klienci":
             st.write("---")
     else:
         st.error("Brak klientów w bazie.")
+
+print("test-pipeline")
