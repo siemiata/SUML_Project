@@ -14,8 +14,8 @@ repos:
     hooks:
       - id: isort
 
-  - repo: https://github.com/pre-commit/mirrors-autoflake
-    rev: v2.2.0
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v1.4  # lub najnowsza stabilna wersja, sprawdź na GitHubie
     hooks:
       - id: autoflake
         args: [--remove-all-unused-imports, --remove-unused-variables]
