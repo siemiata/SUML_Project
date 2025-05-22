@@ -175,7 +175,4 @@ elif menu == "Wszyscy klienci":
     else:
         st.error("Brak klientów w bazie.")
 
-print("test-pipeline")
-print("test-pipeline")
-print("test-pipeline")
-print("test-pipeline")
+
