@@ -53,9 +53,11 @@ def get_customer(pesel=None, name=None):
             (pesel, f"%{name}%"),
         )
     elif pesel:
-        c.execute("SELECT * FROM customers WHERE pesel = ?", (pesel,))
+        c.execute("SELECT * FROM customers WHERE pesel = ?",
+                  (pesel,))
     elif name:
-        c.execute("SELECT * FROM customers WHERE name LIKE ?", (f"%{name}%",))
+        c.execute("SELECT * FROM customers WHERE name LIKE ?",
+                  (f"%{name}%",))
     else:
         return None
     customer = c.fetchone()
