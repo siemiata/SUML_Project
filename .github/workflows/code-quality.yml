@@ -1,4 +1,4 @@
-name: Code Quality Check
+name: Pipeline 2
 
 on:
   pull_request:
