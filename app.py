@@ -178,11 +178,3 @@ elif menu == "Wszyscy klienci":
 
 
 print("test pipeline")
-print("test pipeline")
-print("")
-print("test pipeline")
-print("test pipeline")
-print("")
-print("test pipeline")
-print("test pipeline")
-print("")
