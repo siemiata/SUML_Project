@@ -30,7 +30,7 @@ Aby uruchomić aplikację należy:
 ## Trenowanie modelu
 - Pobierz plik .csv z danymi
 - Wrzuć do folderu projektu
-- Zmodyfikuj odpowiednio ścieżkę do pliku w kodzie  
+- Zmodyfikuj odpowiednio ścieżkę do pliku w kodzie
 - Uruchom train_dec_tree.py
   Dzięki temu wytrenujesz model przewidujący zdolność kredytową
 
