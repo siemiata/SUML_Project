@@ -1,4 +1,4 @@
-name: Pipeline1
+name: Pipeline1 - Budowanie i publikacja obrazu Docker
 
 on:
   push:
