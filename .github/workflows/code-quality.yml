@@ -1,4 +1,4 @@
-name: Pipeline 2
+name: Pipeline 2 - Jakość kodu
 
 on:
   pull_request:
