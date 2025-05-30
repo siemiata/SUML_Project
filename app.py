@@ -256,3 +256,4 @@ elif menu == "Wszyscy klienci":
     else:
         st.error("Brak klientów w bazie.")
 
+print("essa")
