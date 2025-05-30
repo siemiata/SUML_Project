@@ -259,4 +259,4 @@ elif menu == "Wszyscy klienci":
 print("test")
 print("test")
 print("test")
-
+print()
