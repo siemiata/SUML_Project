@@ -1,4 +1,5 @@
 import sqlite3
+
 import joblib
 import streamlit as st
 
@@ -34,8 +35,7 @@ def add_customer(
             (name, pesel, income, liabilities, age, employment_type,
              credit_history)
             VALUES (?, ?, ?, ?, ?, ?, ?)""",
-            (name, pesel, income, liabilities, age,
-             employment_type, credit_history),
+            (name, pesel, income, liabilities, age, employment_type, credit_history),
         )
         conn.commit()
         st.success("Klient dodany pomyślnie!")
@@ -53,11 +53,9 @@ def get_customer(pesel=None, name=None):
             (pesel, f"%{name}%"),
         )
     elif pesel:
-        c.execute("SELECT * FROM customers WHERE pesel = ?",
-                  (pesel,))
+        c.execute("SELECT * FROM customers WHERE pesel = ?", (pesel,))
     elif name:
-        c.execute("SELECT * FROM customers WHERE name LIKE ?",
-                  (f"%{name}%",))
+        c.execute("SELECT * FROM customers WHERE name LIKE ?", (f"%{name}%",))
     else:
         return None
     customer = c.fetchone()
@@ -75,8 +73,13 @@ def get_all_customers():
 
 
 def update_customer(
-    pesel, new_name, new_income, new_liabilities, new_age,
-    new_employment_type, new_credit_history
+    pesel,
+    new_name,
+    new_income,
+    new_liabilities,
+    new_age,
+    new_employment_type,
+    new_credit_history,
 ):
     conn = sqlite3.connect("customers.db")
     c = conn.cursor()
@@ -85,8 +88,13 @@ def update_customer(
         name = ?, income = ?, liabilities = ?, age = ?,
         employment_type = ?, credit_history = ? WHERE pesel = ?""",
         (
-            new_name, new_income, new_liabilities, new_age,
-            new_employment_type, new_credit_history, pesel,
+            new_name,
+            new_income,
+            new_liabilities,
+            new_age,
+            new_employment_type,
+            new_credit_history,
+            pesel,
         ),
     )
     conn.commit()
@@ -94,28 +102,26 @@ def update_customer(
     st.success("Dane klienta zostały zaktualizowane!")
 
 
-def credit_score_prediction(
-    income, liabilities, age, employment_type, credit_history
-):
+def credit_score_prediction(income, liabilities, age, employment_type, credit_history):
     employment_type_encoded = {"UoP": 0, "Zlecenie": 1, "B2B": 2}
     credit_history_encoded = {"Dobra": 0, "Średnia": 1, "Zła": 2, "Brak": 3}
 
-    features = [[
-        income,
-        liabilities,
-        age,
-        employment_type_encoded[employment_type],
-        credit_history_encoded[credit_history],
-    ]]
+    features = [
+        [
+            income,
+            liabilities,
+            age,
+            employment_type_encoded[employment_type],
+            credit_history_encoded[credit_history],
+        ]
+    ]
     prediction = model.predict(features)[0]
     if prediction == 1:
         return "Warto udzielić kredytu"
     return "Nie warto udzielać kredytu"
 
 
-st.set_page_config(
-    page_title="Przewidywanie zdolności kredytowej", layout="centered"
-)
+st.set_page_config(page_title="Przewidywanie zdolności kredytowej", layout="centered")
 st.title("Przewidywanie zdolności kredytowej")
 init_db()
 
@@ -130,9 +136,7 @@ if menu == "Dodaj klienta":
         name = st.text_input("Imię i nazwisko")
         pesel = st.text_input("PESEL")
         income = st.number_input("Dochód", min_value=0.0, format="%.2f")
-        liabilities = st.number_input(
-            "Zobowiązania", min_value=0.0, format="%.2f"
-        )
+        liabilities = st.number_input("Zobowiązania", min_value=0.0, format="%.2f")
         age = st.number_input("Wiek", min_value=18, max_value=120)
         employment_type = st.selectbox(
             "Rodzaj zatrudnienia", ["UoP", "Zlecenie", "B2B"]
@@ -144,8 +148,13 @@ if menu == "Dodaj klienta":
         if submitted:
             if name and pesel:
                 add_customer(
-                    name, pesel, income, liabilities, age,
-                    employment_type, credit_history,
+                    name,
+                    pesel,
+                    income,
+                    liabilities,
+                    age,
+                    employment_type,
+                    credit_history,
                 )
             else:
                 st.error("Wypełnij poprawnie wszystkie pola!")
@@ -168,8 +177,7 @@ elif menu == "Szukaj klienta":
             st.write(f"**Zatrudnienie:** {customer[6]}")
             st.write(f"**Historia kredytowa:** {customer[7]}")
             credit_score = credit_score_prediction(
-                customer[3], customer[4], customer[5],
-                customer[6], customer[7]
+                customer[3], customer[4], customer[5], customer[6], customer[7]
             )
             st.info(f"**Zdolność kredytowa:** {credit_score}")
         else:
@@ -183,8 +191,7 @@ elif menu == "Edytuj klienta":
 
     with st.form("edit_customer_form"):
         edit_pesel = st.text_input(
-            "Podaj PESEL klienta do edycji",
-            value=st.session_state.edit_pesel
+            "Podaj PESEL klienta do edycji", value=st.session_state.edit_pesel
         )
         submitted = st.form_submit_button("Szukaj klienta")
         if submitted:
@@ -195,20 +202,15 @@ elif menu == "Edytuj klienta":
         if customer:
             st.success("Klient znaleziony! Edytuj dane poniżej.")
             with st.form("update_customer_form"):
-                new_name = st.text_input(
-                    "Nowe imię i nazwisko", value=customer[1]
-                )
+                new_name = st.text_input("Nowe imię i nazwisko", value=customer[1])
                 new_income = st.number_input(
-                    "Nowy dochód", min_value=0.0,
-                    value=customer[3], format="%.2f"
+                    "Nowy dochód", min_value=0.0, value=customer[3], format="%.2f"
                 )
                 new_liabilities = st.number_input(
-                    "Nowe zobowiązania", min_value=0.0,
-                    value=customer[4], format="%.2f"
+                    "Nowe zobowiązania", min_value=0.0, value=customer[4], format="%.2f"
                 )
                 new_age = st.number_input(
-                    "Nowy wiek", min_value=18,
-                    max_value=120, value=customer[5]
+                    "Nowy wiek", min_value=18, max_value=120, value=customer[5]
                 )
                 new_employment_type = st.selectbox(
                     "Nowy rodzaj zatrudnienia",
@@ -218,16 +220,18 @@ elif menu == "Edytuj klienta":
                 new_credit_history = st.selectbox(
                     "Nowa historia kredytowa",
                     ["Dobra", "Średnia", "Zła", "Brak"],
-                    index=["Dobra", "Średnia", "Zła", "Brak"].index(
-                        customer[7]
-                    ),
+                    index=["Dobra", "Średnia", "Zła", "Brak"].index(customer[7]),
                 )
                 save_submitted = st.form_submit_button("Zapisz zmiany")
                 if save_submitted:
                     update_customer(
-                        st.session_state.edit_pesel, new_name,
-                        new_income, new_liabilities, new_age,
-                        new_employment_type, new_credit_history,
+                        st.session_state.edit_pesel,
+                        new_name,
+                        new_income,
+                        new_liabilities,
+                        new_age,
+                        new_employment_type,
+                        new_credit_history,
                     )
         else:
             st.error("Nie znaleziono klienta o podanym numerze PESEL.")
@@ -245,11 +249,9 @@ elif menu == "Wszyscy klienci":
             st.write(f"**Zatrudnienie:** {customer[6]}")
             st.write(f"**Historia kredytowa:** {customer[7]}")
             credit_score = credit_score_prediction(
-                customer[3], customer[4], customer[5],
-                customer[6], customer[7]
+                customer[3], customer[4], customer[5], customer[6], customer[7]
             )
             st.info(f"**Zdolność kredytowa:** {credit_score}")
             st.write("---")
     else:
         st.error("Brak klientów w bazie.")
-
