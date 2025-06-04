@@ -260,3 +260,4 @@ elif menu == "Wszyscy klienci":
 print()
 print()
 print()
+print()
