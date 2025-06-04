@@ -4,3 +4,4 @@ numpy
 joblib
 scikit-learn
 pre-commit
+azure-storage-blob
