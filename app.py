@@ -181,7 +181,3 @@ elif menu == "Wszyscy klienci":
         wynik = credit_score_prediction(c[3], c[4], c[5], c[6], c[7])
         st.info(f"📈 Zdolność kredytowa: {wynik}")
         st.write("---")
-
-
-print()
-print()
