@@ -2,7 +2,7 @@ name: Deploy container to Azure
 
 on:
   workflow_run:
-    workflows: ["Pipeline 3 - Budowanie i publikacja obrazu Docker"]
+    workflows: ["Pipeline1 - Budowanie i publikacja obrazu Docker"]
     types:
       - completed
 
