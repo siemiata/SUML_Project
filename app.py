@@ -6,9 +6,8 @@ import joblib
 import streamlit as st
 
 # Zapis danych do Azure Blob
-def save_to_blob(input_text, output_text):
+def save_to_blob(input_text, output_text, folder):
     try:
-        folder = datetime.utcnow().strftime("%Y-%m-%d_%H-%M-%S")
         conn_str = os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
         container = os.environ.get("AZURE_STORAGE_CONTAINER_NAME")
 
@@ -148,7 +147,11 @@ elif menu == "Szukaj klienta":
             st.write(f"**Historia kredytowa:** {customer[7]}")
             wynik = credit_score_prediction(customer[3], customer[4], customer[5], customer[6], customer[7])
             st.info(f"📈 Zdolność kredytowa: {wynik}")
-            save_to_blob(f"{customer}", wynik)
+
+            # ✅ Nowy bezpieczny folder na blobie: timestamp + PESEL
+            folder_name = f"{datetime.utcnow().strftime('%Y-%m-%d_%H-%M-%S')}_{customer[2]}"
+            input_text = f"{customer}"
+            save_to_blob(input_text, wynik, folder_name)
         else:
             st.error("❌ Klient nie znaleziony.")
 
