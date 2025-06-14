@@ -45,4 +45,5 @@ Aby uruchomić aplikację należy:
 - Aplikacja wykorzystuje Azure Blob Storage do bezpiecznego przechowywania danych wejściowych i wyników predykcji zdolności kredytowej.
 - Za każdym razem, gdy użytkownik wyszuka klienta i zostanie przeprowadzona predykcja zdolności kredytowej, dane są zapisywane w dedykowanych folderach w kontenerze Blob Storage.
 - Zapewnia to między innymi trwałość danych z każdej predykcji, niezależnie od stanu aplikacji.
+- Dostęp do wersji testowej (MVP) jest dostępny za pomocą linka https://credit-app-suml-dtg5c6b4f0cug5ca.polandcentral-01.azurewebsites.net/
 
