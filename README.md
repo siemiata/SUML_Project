@@ -39,3 +39,10 @@ Aby uruchomić aplikację należy:
 - Uruchom komendę docker build -t my-ai-app .
 - Uruchom komendę docker run -p 8501:8501 my-ai-app
 - Aplikacja działa na localhost:8501
+
+## Funkcjonalność Azure Blob Storage
+
+- Aplikacja wykorzystuje Azure Blob Storage do bezpiecznego przechowywania danych wejściowych i wyników predykcji zdolności kredytowej.
+- Za każdym razem, gdy użytkownik wyszuka klienta i zostanie przeprowadzona predykcja zdolności kredytowej, dane są zapisywane w dedykowanych folderach w kontenerze Blob Storage.
+- Zapewnia to między innymi trwałość danych z każdej predykcji, niezależnie od stanu aplikacji.
+
